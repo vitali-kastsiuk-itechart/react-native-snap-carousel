@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Animated, Platform, Easing, I18nManager, ViewPropTypes } from 'react-native';
+import { ScrollView, Animated, Platform, Easing, I18nManager } from 'react-native';
 import PropTypes from 'prop-types';
 import shallowCompare from 'react-addons-shallow-compare';
 import _debounce from 'lodash.debounce';
@@ -13,139 +13,139 @@ const IS_RTL = I18nManager.isRTL;
 
 export default class Carousel extends Component {
 
-    static propTypes = {
-        ...ScrollView.propTypes,
-        /**
-        * Width in pixels of carousel's items
-        * Required with 'horizontal' mode
-        */
-        itemWidth: PropTypes.number,
-        /**
-        * Height in pixels of carousel's items
-        * Required with 'vertical' mode
-        */
-        itemHeight: PropTypes.number,
-        /**
-        * Width in pixels of the carousel itself
-        * Required with 'horizontal' mode
-        */
-        sliderWidth: PropTypes.number,
-        /**
-        * Height in pixels of the carousel itself
-        * Required with 'horizontal' mode
-        */
-        sliderHeight: PropTypes.number,
-        /**
-        * From slider's center, minimum slide distance
-        * to be scrolled before being set to active
-        */
-        activeSlideOffset: PropTypes.number,
-        /**
-        * Animated animation to use. Provide the name
-        * of the method, defaults to timing
-        */
-        animationFunc: PropTypes.string,
-        /**
-        * Animation options to be merged with the
-        * default ones. Can be used w/ animationFunc
-        */
-        animationOptions: PropTypes.object,
-        /**
-        * Trigger autoplay
-        */
-        autoplay: PropTypes.bool,
-        /**
-        * Delay before enabling autoplay on startup and
-        * after releasing the touch
-        */
-        autoplayDelay: PropTypes.number,
-        /**
-        * Delay until navigating to the next item
-        */
-        autoplayInterval: PropTypes.number,
-        /**
-         * Override container's inner horizontal padding
-         * WARNING: current padding calculation is necessary for slide's centering
-         * Be aware that using this prop can mess with carousel's behavior
-         */
-        carouselHorizontalPadding: PropTypes.number,
-        /**
-         * Override container's inner vertical padding
-         * WARNING: current padding calculation is necessary for slide's centering
-         * Be aware that using this prop can mess with carousel's behavior
-         */
-        carouselVerticalPadding: PropTypes.number,
-        /**
-        * Global wrapper's style
-        */
-        containerCustomStyle: ViewPropTypes.style,
-        /**
-        * Content container's style
-        */
-        contentContainerCustomStyle: ViewPropTypes.style,
-        /**
-        * If enabled, snapping will be triggered once
-        * the ScrollView stops moving, not when the
-        * user releases his finger
-        */
-        enableMomentum: PropTypes.bool,
-        /**
-        * If enabled, releasing the touch will scroll
-        * to the center of the nearest/active item
-        */
-        enableSnap: PropTypes.bool,
-        /**
-        * Index of the first item to display
-        */
-        firstItem: PropTypes.number,
-        /**
-        * Opacity value of the inactive slides
-        */
-        inactiveSlideOpacity: PropTypes.number,
-        /**
-        * Scale factor of the inactive slides
-        */
-        inactiveSlideScale: PropTypes.number,
-        /**
-        * When momentum is disabled, this prop defines the
-        * timeframe during which multiple 'endDrag' calls
-        * should be "grouped" into a single one.
-        * This debounce also helps smoothing the snap effect
-        * by providing a bit of inertia when touch is released.
-        * Note that it will delay callback's execution.
-        */
-        scrollEndDragDebounceValue: PropTypes.number,
-        /**
-         * Style of each item's container
-         */
-        slideStyle: Animated.View.propTypes.style,
-        /**
-         * whether to implement a `shouldComponentUpdate`
-         * strategy to minimize updates
-         */
-        shouldOptimizeUpdates: PropTypes.bool,
-        /**
-         * Snapping on android is kinda choppy, especially
-         * when swiping quickly so you can disable it
-         */
-        snapOnAndroid: PropTypes.bool,
-        /**
-        * Delta x when swiping to trigger the snap
-        */
-        swipeThreshold: PropTypes.number,
-        /**
-        * Layout slides vertically
-        */
-        vertical: PropTypes.bool,
-        /**
-         * Interface for ScrollView's `onScroll` callback (deprecated)
-         */
-        onScrollViewScroll: PropTypes.func,
-        /**
-         * Fired when snapping to an item
-         */
-        onSnapToItem: PropTypes.func
-    };
+    // static propTypes = {
+    //     ...ScrollView.propTypes,
+    //     /**
+    //     * Width in pixels of carousel's items
+    //     * Required with 'horizontal' mode
+    //     */
+    //     itemWidth: PropTypes.number,
+    //     /**
+    //     * Height in pixels of carousel's items
+    //     * Required with 'vertical' mode
+    //     */
+    //     itemHeight: PropTypes.number,
+    //     /**
+    //     * Width in pixels of the carousel itself
+    //     * Required with 'horizontal' mode
+    //     */
+    //     sliderWidth: PropTypes.number,
+    //     /**
+    //     * Height in pixels of the carousel itself
+    //     * Required with 'horizontal' mode
+    //     */
+    //     sliderHeight: PropTypes.number,
+    //     /**
+    //     * From slider's center, minimum slide distance
+    //     * to be scrolled before being set to active
+    //     */
+    //     activeSlideOffset: PropTypes.number,
+    //     /**
+    //     * Animated animation to use. Provide the name
+    //     * of the method, defaults to timing
+    //     */
+    //     animationFunc: PropTypes.string,
+    //     /**
+    //     * Animation options to be merged with the
+    //     * default ones. Can be used w/ animationFunc
+    //     */
+    //     animationOptions: PropTypes.object,
+    //     /**
+    //     * Trigger autoplay
+    //     */
+    //     autoplay: PropTypes.bool,
+    //     /**
+    //     * Delay before enabling autoplay on startup and
+    //     * after releasing the touch
+    //     */
+    //     autoplayDelay: PropTypes.number,
+    //     /**
+    //     * Delay until navigating to the next item
+    //     */
+    //     autoplayInterval: PropTypes.number,
+    //     /**
+    //      * Override container's inner horizontal padding
+    //      * WARNING: current padding calculation is necessary for slide's centering
+    //      * Be aware that using this prop can mess with carousel's behavior
+    //      */
+    //     carouselHorizontalPadding: PropTypes.number,
+    //     /**
+    //      * Override container's inner vertical padding
+    //      * WARNING: current padding calculation is necessary for slide's centering
+    //      * Be aware that using this prop can mess with carousel's behavior
+    //      */
+    //     carouselVerticalPadding: PropTypes.number,
+    //     /**
+    //     * Global wrapper's style
+    //     */
+    //     containerCustomStyle: ViewPropTypes.style,
+    //     /**
+    //     * Content container's style
+    //     */
+    //     contentContainerCustomStyle: ViewPropTypes.style,
+    //     /**
+    //     * If enabled, snapping will be triggered once
+    //     * the ScrollView stops moving, not when the
+    //     * user releases his finger
+    //     */
+    //     enableMomentum: PropTypes.bool,
+    //     /**
+    //     * If enabled, releasing the touch will scroll
+    //     * to the center of the nearest/active item
+    //     */
+    //     enableSnap: PropTypes.bool,
+    //     /**
+    //     * Index of the first item to display
+    //     */
+    //     firstItem: PropTypes.number,
+    //     /**
+    //     * Opacity value of the inactive slides
+    //     */
+    //     inactiveSlideOpacity: PropTypes.number,
+    //     /**
+    //     * Scale factor of the inactive slides
+    //     */
+    //     inactiveSlideScale: PropTypes.number,
+    //     /**
+    //     * When momentum is disabled, this prop defines the
+    //     * timeframe during which multiple 'endDrag' calls
+    //     * should be "grouped" into a single one.
+    //     * This debounce also helps smoothing the snap effect
+    //     * by providing a bit of inertia when touch is released.
+    //     * Note that it will delay callback's execution.
+    //     */
+    //     scrollEndDragDebounceValue: PropTypes.number,
+    //     /**
+    //      * Style of each item's container
+    //      */
+    //     slideStyle: Animated.View.propTypes.style,
+    //     /**
+    //      * whether to implement a `shouldComponentUpdate`
+    //      * strategy to minimize updates
+    //      */
+    //     shouldOptimizeUpdates: PropTypes.bool,
+    //     /**
+    //      * Snapping on android is kinda choppy, especially
+    //      * when swiping quickly so you can disable it
+    //      */
+    //     snapOnAndroid: PropTypes.bool,
+    //     /**
+    //     * Delta x when swiping to trigger the snap
+    //     */
+    //     swipeThreshold: PropTypes.number,
+    //     /**
+    //     * Layout slides vertically
+    //     */
+    //     vertical: PropTypes.bool,
+    //     /**
+    //      * Interface for ScrollView's `onScroll` callback (deprecated)
+    //      */
+    //     onScrollViewScroll: PropTypes.func,
+    //     /**
+    //      * Fired when snapping to an item
+    //      */
+    //     onSnapToItem: PropTypes.func
+    // };
 
     static defaultProps = {
         activeSlideOffset: 25,
@@ -392,7 +392,6 @@ export default class Carousel extends Component {
 
         const animationCommonOptions = {
             isInteraction: false,
-            useNativeDriver: true,
             ...animationOptions,
             toValue: toValue
         };

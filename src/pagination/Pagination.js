@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { View, ViewPropTypes } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import PaginationDot from './PaginationDot';
 import styles from './Pagination.style';
 
 export default class Pagination extends Component {
 
-    static propTypes = {
-        dotsLength: PropTypes.number.isRequired,
-        activeDotIndex: PropTypes.number.isRequired,
-        containerStyle: ViewPropTypes.style,
-        dotStyle: ViewPropTypes.style,
-        inactiveDotOpacity: PropTypes.number,
-        inactiveDotScale: PropTypes.number
-    };
+    // static propTypes = {
+    //     dotsLength: PropTypes.number.isRequired,
+    //     activeDotIndex: PropTypes.number.isRequired,
+    //     containerStyle: ViewPropTypes.style,
+    //     dotStyle: ViewPropTypes.style,
+    //     inactiveDotOpacity: PropTypes.number,
+    //     inactiveDotScale: PropTypes.number
+    // };
 
     get dots () {
         const {
